@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 public class Review {
     @Id
     private String id;
-    private String userId; // User who wrote the review
-    private String shopOwnerId; // Related shop (optional if for food item)
-    private String foodItemId; // Related food item (optional if for shop)
+    private String userId; 
+    private String shopOwnerId; 
+    private String foodItemId; 
     private String reviewText;
-    private int rating; // Rating out of 5
-    private String response; // Shop owner response (optional)
+    private int rating; 
+    private String response; 
 }

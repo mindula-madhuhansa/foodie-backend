@@ -42,9 +42,7 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<Order> getOrderById(@PathVariable String id) {
         Optional<Order> order = orderService.getOrderById(id);
-        
-        // If order is present, return 200 OK, otherwise return 404 Not Found
-        return order.isPresent() ? ResponseEntity.ok(order.get()) : ResponseEntity.notFound().build();
+                return order.isPresent() ? ResponseEntity.ok(order.get()) : ResponseEntity.notFound().build();
     }
 
     // Update Order by ID
