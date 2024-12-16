@@ -18,18 +18,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Map<String, String> credentials) {
+    @PostMapping("/sign-in")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> credentials) {
         String email = credentials.get("email");
         String password = credentials.get("password");
         if (userService.authenticate(email, password)) {
-            return ResponseEntity.ok("Login successful");
+            User user = userService.getUserByEmail(email);
+            user.setPassword(null);
+            return ResponseEntity.ok(user);
+
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping("/sign-up")
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
