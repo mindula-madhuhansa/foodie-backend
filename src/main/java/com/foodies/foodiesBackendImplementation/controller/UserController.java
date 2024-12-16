@@ -20,16 +20,16 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Map<String, String> credentials) {
-        String username = credentials.get("username");
+        String email = credentials.get("email");
         String password = credentials.get("password");
-        if (userService.authenticate(username, password)) {
+        if (userService.authenticate(email, password)) {
             return ResponseEntity.ok("Login successful");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }

@@ -14,7 +14,7 @@ public class UserService {
     private UserRepository userRepository;
 
     public User createUser(User user) {
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new RuntimeException("Username already exists");
             
         }
@@ -32,11 +32,11 @@ public class UserService {
 
     public User updateUser(String id, User updatedUser) {
         User user = getUserById(id);
-        if (!user.getUsername().equals(updatedUser.getUsername())
-                && userRepository.findByUsername(updatedUser.getUsername()).isPresent()) {
+        if (!user.getEmail().equals(updatedUser.getEmail())
+                && userRepository.findByEmail(updatedUser.getEmail()).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
-        user.setUsername(updatedUser.getUsername());
+        user.setEmail(updatedUser.getEmail());
         user.setPassword(updatedUser.getPassword());
         user.setRole(updatedUser.getRole());
         return userRepository.save(user);
@@ -47,7 +47,7 @@ public class UserService {
     }
 
     public boolean authenticate(String username, String password) {
-        return userRepository.findByUsername(username)
+        return userRepository.findByEmail(username)
                 .map(user -> user.getPassword().equals(password))
                 .orElse(false);
     }
