@@ -43,9 +43,6 @@ public class FoodItemController {
         return foodItemService.updateFoodItem(id, updatedFoodItem);
     }
 
-    // Delete a food item by shop owner
-    @DeleteMapping("/{id}")
-    public void deleteFoodItem(@PathVariable String id) {
-        foodItemService.deleteFoodItem(id);
+    
     }
 }
