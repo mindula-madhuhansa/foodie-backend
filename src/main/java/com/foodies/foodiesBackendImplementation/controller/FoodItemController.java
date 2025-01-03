@@ -1,6 +1,7 @@
 package com.foodies.foodiesBackendImplementation.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.foodies.foodiesBackendImplementation.model.FoodItem;
 import com.foodies.foodiesBackendImplementation.service.FoodItemService;
 
@@ -43,6 +45,9 @@ public class FoodItemController {
         return foodItemService.updateFoodItem(id, updatedFoodItem);
     }
 
-    
+    // Delete a food item by shop owner
+    @DeleteMapping("/{id}")
+    public void deleteFoodItem(@PathVariable String id) {
+        foodItemService.deleteFoodItem(id);
     }
 }
